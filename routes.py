@@ -1,3 +1,5 @@
+'''
+
 from flask import Flask
 from flask import render_template
 
@@ -17,3 +19,4 @@ def intro(name=None):
 def analytics(name=None):
     #Analytics Page
     return render_template('analytics.html',name=name)
+'''
