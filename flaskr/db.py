@@ -1,5 +1,13 @@
-import sqlite3
+'''
+Maintainer: Timothy Player
+Date: Mar. 18th 2021
+Description: This hosts the logic for our database. We need to hold blobs which are jsons
+containing user hashes, where they were and at what date they were there. 
+WE DO NOT HOLD ANY PERSONAL INFORMATION!!!! i.e. name/birthdate/sex... to 
+identify someone we are not a dev team.
+'''
 
+import sqlite3
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
