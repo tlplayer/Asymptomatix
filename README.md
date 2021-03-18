@@ -12,3 +12,5 @@ INSTALLATION
 Point the FLASK_APP variable at the directory/file that holds the app
     'export FLASK_APP=flaskr'
     'export' FLASK
+Run the flask app
+    'flask run'
