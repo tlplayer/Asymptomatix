@@ -13,8 +13,9 @@ from flaskr import app
 
 
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+@app.route('/base')
+def hello_world(name=None):
+    return render_template(base.html,name = name)
 
 @app.route('/intro')
 def intro(name=None):
