@@ -35,14 +35,22 @@ Mob[Mobility.LOW]  = 'low'
 
 GRID_BOTTOM_LEFT    = [359443,-839407]
 GRID_TOP_RIGHT      = [359611,-839240]
-NUM_PATIENTS        = 1000
-POSITIVE_PATIENTS   = 10
+NUM_PATIENTS        = 10000
+POSITIVE_PATIENTS   = 100
 STEPS               = 24
 TIMESTEP            = 30
 TIMESTART           = 480
 EVERY_POSITIVE      = int(NUM_PATIENTS/POSITIVE_PATIENTS)
+# The actual number of vaccinated persons will be approximate
+VAX_SAT             = 0.45
+EVERY_VAX           = NUM_PATIENTS/(VAX_SAT * NUM_PATIENTS)
+print("Number of patients: {}".format(NUM_PATIENTS))
+print("\tEvery {}nth person is vaccinated at {} saturation".format(EVERY_VAX,VAX_SAT))
+print("\tEvery {}nth person is positive at {} saturation".format(EVERY_POSITIVE,POSITIVE_PATIENTS/NUM_PATIENTS))
+VAX_EFFICACY        = 0.9
+VAX_RAND_OFFSET     = rd.randint(0,NUM_PATIENTS)
 
-fakeCTfile = "data/fake_CT1000.json"
+fakeCTfile = "data/fake_CT"+str(NUM_PATIENTS)+"_wvax.json"
 
 jsondata = [{}] * NUM_PATIENTS
 
@@ -96,10 +104,14 @@ for i in range(NUM_PATIENTS):
     #   x,y,t  : [XXX,YYY,T]
     # ]
     locations = generate_locations(k)
+    vax = bool(rd.random() < VAX_SAT)
+    eff = bool(vax and rd.random() < VAX_EFFICACY)
       
     patient = {
         'id' : i,
-        'positive' : bool(not(i%EVERY_POSITIVE)),
+        'positive' : bool(not(i % EVERY_POSITIVE)),
+        'vaccinated' : vax,
+        'eff_dose' : eff,
         'mobility' : Mobility(mobility).name,
         't' : list(locations[:,2]),
         'lat' : list(locations[:,0]),
@@ -107,29 +119,20 @@ for i in range(NUM_PATIENTS):
     }
 
     jsondata[i] = patient
-
+v = 0
+p = 0
+e = 0
+for element in jsondata:
+    if(element['vaccinated'] == True):
+        v += 1
+        if(element['eff_dose'] == True):
+            e += 1
+    if(element['positive'] == True):
+        p += 1
+print("{} people vaccinated ({} effectively), {} people positive".format(v,e,p))
 try:
     with open(fakeCTfile,'w') as f:
         json.dump(jsondata,f,indent=4)
 except IOError:
     print("Failed to open ",fakeCTfile,file=sys.stderr) 
 print("JSON data generation complete")
-
-
-# ### Uncomment for data animation, don't worry about this, it doesn't work
-# from matplotlib import pyplot as plt
-# from matplotlib.animation import FuncAnimation
-# fig, ax = plt.subplots()
-# ax.set_xlim(GRID_BOTTOM_LEFT[0],GRID_TOP_RIGHT[0])
-# ax.set_ylim(GRID_BOTTOM_LEFT[1],GRID_TOP_RIGHT[1])
-# scatter = ax.scatter([],[])
-
-# def animation_frame(i):
-#     x_data = [d['x'][i] for d in jsondata]
-#     y_data = [d['y'][i] for d in jsondata]
-#     data = np.hstack((x_data,y_data))
-#     return scatter.set_offsets(data)
-
-# anim = FuncAnimation(fig,animation_frame)
-
-# anim.save("fake_CT1000.mp4")
