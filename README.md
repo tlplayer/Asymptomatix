@@ -1,11 +1,11 @@
 # Asymptomatix
 ![](logo.png)
 
-##Description
+## Description
 
 Asymptomatix is a crowd source covid-19 contact tracing website. In brief, it enables users to submit their last geolocations over the last 2 weeks to a database that can be accessed by users to check hotspots of Covid-19. No name, no signup required. It enables complete anonymity and we rest a lot of trust in the user. So the reported numbers are subject to inaccuracy and fallacy. This is just to help visualize.
 
-##INSTALLATION
+## INSTALLATION
 
 ```sh
 python3 -m venv env
