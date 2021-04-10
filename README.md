@@ -1,4 +1,5 @@
 # Asymptomatix
+![LOGO](logo.png)
 
 INSTALLATION
 
