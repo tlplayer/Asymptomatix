@@ -6,14 +6,16 @@ Description this hosts the routess to locations on our website. Navigate to rout
 by the URL.
 '''
 
-from flask import Flask
-from flask import render_template
+# This file holds the URLs and the logic for each.
+from flask import render_template, flash, redirect, url_for
 from markupsafe import escape
+from flaskr import app
+
 
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
-
+@app.route('/base')
+def hello_world(name=None):
+    return render_template('base.html',name = name)
 
 @app.route('/intro')
 def intro(name=None):
@@ -25,8 +27,10 @@ def analytics(name=None):
     #Analytics Page
     return render_template('analytics.html',name=name)
 
-
-
+@app.route('/forms')
+def form(name=None):
+    #This is where the user supplies info for the JSON
+    return render_template('forms.html')
 
 @app.route('/user/<username>')
 def show_user_profile(username):
