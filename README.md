@@ -1,5 +1,5 @@
 # Asymptomatix
-![LOGO](logo.png)
+![](logo.png)
 
 ##Description
 
