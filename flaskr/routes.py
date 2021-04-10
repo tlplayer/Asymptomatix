@@ -13,7 +13,6 @@ from flaskr import app
 
 
 @app.route('/')
-@app.route('/base')
 def hello_world(name=None):
     return render_template('base.html',name = name)
 
