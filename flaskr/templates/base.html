@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 
 <html>
+
+<!--This contains class info color of banner centering etc.-->
 <head>
     <style>
         .banner {
           background-color: tomato;
           color: white;
           padding: 10px;
+          text-align:center
         }
-        </style>
-        <img src="/static/logo.png" alt="logo">
+        .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      </style>
+      <img src="/static/logo.png" alt="logo" class="center">
 </head>
 
-<h2 class = "banner">
-
-    <a href="/form">Submit Form</a>
-    <a href="/login">LOGIN</a>
-    <a href="/intro">Submit Form</a>
-    <a href="/register">Register</a>
-    <a href="/report">Report Covid Case and Path</a>
-</h2>
+<!--This contains the banner for useful links-->
+<h1 class = "banner">
+    <a href="/intro">HOME</a>
+    <a href="/report">REPORT</a>
+    <a href="/analytics">LOCAL ANALYTICS</a>
+</h1>
 
 </html>

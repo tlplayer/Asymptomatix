@@ -13,9 +13,6 @@ from flaskr import app
 
 
 @app.route('/')
-def hello_world(name=None):
-    return render_template('base.html',name = name)
-
 @app.route('/intro')
 def intro(name=None):
     #Home page
@@ -26,10 +23,10 @@ def analytics(name=None):
     #Analytics Page
     return render_template('analytics.html',name=name)
 
-@app.route('/forms')
+@app.route('/report')
 def form(name=None):
     #This is where the user supplies info for the JSON
-    return render_template('forms.html')
+    return render_template('report.html')
 
 @app.route('/user/<username>')
 def show_user_profile(username):

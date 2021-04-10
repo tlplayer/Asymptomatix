@@ -1,7 +1,8 @@
-<!doctype html>
-<title>Hello from Flask</title>
-{% if name %}
-  <h1>Hello {{ name }}!</h1>
-{% else %}
-  <h1>Hello, World!</h1>
-{% endif %}
+{% extends "base.html" %}
+{%block content%}
+<p>
+  Hello and welcome to Asymptomatix! The purpose 
+  of this website is to enable everyone to see and report covid-19 cases or other ilnesses. 
+  Please report/view analytics to help others in your community.
+</p>
+{%endblock%}

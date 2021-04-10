@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Register{% endblock %}</h1>
+{% block reportTitle%}
+  <h1>Analytics</h1>
 {% endblock %}
 
-{% block content %}
+{% block form%}
   <form method="post">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <label for="username">Username</label>
     <input name="username" id="username" required>
     <label for="password">Password</label>
