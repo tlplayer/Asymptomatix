@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 <!--This contains class info color of banner centering etc.-->
+
+
+
 <head>
     <style>
         .banner {
@@ -18,16 +20,28 @@
         .regular {
           text-align: left;
         }
+        label {
+        display: block;
+        font: 1rem 'Fira Sans', sans-serif;
+        }
+
+      input,
+      label {
+        margin: .4rem 0;
+      }
       </style>
       <img src="/static/logo.png" alt="logo" class="center">
 </head>
 
 <!--This contains the banner for useful links-->
 <h1 class = "banner">
-    <a href="/intro">HOME</a>
-    <a href="/report">REPORT</a>
-    <a href="/analytics">ANALYTICS</a>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <a href="/intro"><i class="fa fa-home"></i></a>
+    <a href="/analytics"><i class="fa fa-search"></i></a>
+    <a href="/report"><i class="fa fa-globe"></i></a>
 </h1>
+
+<!--This is where the specific pages content goes-->
 <p>
   {%block content%}
   {% endblock %}

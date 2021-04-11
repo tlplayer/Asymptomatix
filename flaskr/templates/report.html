@@ -4,13 +4,18 @@
   <h1>Analytics</h1>
 {% endblock %}
 
-{% block form%}
+{% block content%}
   <form method="post">
     <script src="https://www.google.com/recaptcha/api.js"></script>
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
+    <label for="latitutde">Latitude</label>
+    <input name="latitude" id="latitude" required>
+    <label for="longitude">longitude</label>
+    <input type="longitude" name="longitude" id="longitude" required>
     <input type="submit" value="Register">
+    <fieldset id="buildyourform">
+        <legend>Build your own form!</legend>
+    </fieldset>
+    <input type="button" value="Preview form" class="add" id="preview" />
+    <input type="button" value="Add a field" class="add" id="add" />
   </form>
 {% endblock %}
