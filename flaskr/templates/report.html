@@ -1,26 +1,27 @@
 {% extends 'base.html' %}
-
+{% import "formMacro.html" as macros %}
 
 {% block content%}
+<body>
+    <a id="add" href="#">Add Location</a>
+    <hr/>
 
-{%- macro location_form(subform, index) %}
-    <script src="https://www.google.com/recaptcha/api.js"></script> 
-    <div id="lap-{{ index }}-form" class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}">
-        <div>
-            {{ subform.latitude.label }}
-            {{ subform.latitude }}
+    {# Show all subforms #}
+    <form id="location-form" action="" method="POST" role="form">
+        {{ form.hidden_tag() }}
+        <div id="subforms-container">
+            {% for subform in form.locations %}
+                {{ macros.render_location_form(subform, loop.index0) }}
+            {% endfor %}
         </div>
-        <div>
-            {{ subform.longitude.label }}
-            {{ subform.longitude}}
-        </div>
-        <div>
-            {{ subform.time.label }}
-            {{ subform.time }}
-        </div>
-        <a class="remove" href="">Remove</a>
-        <hr/>
-    </div>
-{%- endmacro %}
+
+        <button type="submit">Send</button>
+    </form>
+
+    {% if form.errors %}
+        {{ form.errors }}
+    {% endif %}
+
+</body>
 
 {% endblock %}

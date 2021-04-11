@@ -24,31 +24,28 @@ def analytics(name=None):
     #Analytics Page
     return render_template('analytics.html',name=name)
 
-@app.route('/report', methods=['GET'])
+@app.route('/report', methods=['GET', 'POST'])
 def form(name=None):
     form = geoform.MainForm()
     template_form = geoform.GeoForm(prefix='Locations-_-')
+
     if form.validate_on_submit():
         # Create location
-        new_locations = database.Locations()
+        new_locations = Locations()
 
         db.session.add(new_locations)
 
         for location in form.locations.data:
-            new_location = database.Location(**location)
+            new_location = Location(**location)
 
             # Add to location
             new_locations.locations.append(new_location)
 
         db.session.commit()
 
-        locations = Locations.query
-
-    return render_template(
+    else:
+        return render_template(
         'report.html',
         form=form,
-        locations=locations,
         _template=template_form
-    )
-    #This is where the user supplies info for the JSON
-    #return render_template('report.html')
+        )
