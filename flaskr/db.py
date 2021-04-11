@@ -11,26 +11,27 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class locations(db.Model):
+class Locations(db.Model):
     """Stores locations."""
-    __tablename__ = 'locations'
+    __tablename__ = 'Locations'
 
     id = db.Column(db.Integer, primary_key=True)
 
 
-class case(db.Model):
+class Location(db.Model):
     """Stores the location & time"""
-    __tablename__ = 'locations'
+    __tablename__ = 'Location'
 
     id = db.Column(db.Integer, primary_key=True)
-    race_id = db.Column(db.Integer, db.ForeignKey('races.id'))
+    locations_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
 
-    longitude = db.Column(db.Integer)
-    latitude = db.Column(db.Integer)
-    time = db.Column(db.String(30))
+    #This stores the long, lat and time.
+    longitude = db.Column(db.Float)
+    latitude = db.Column(db.Float)
+    time = db.Column(db.String(10))
 
     # Relationship
     locations = db.relationship(
-        'locations',
-        backref=db.backref('case', lazy='dynamic', collection_class=list)
+        'location',
+        backref=db.backref('Locations', lazy='dynamic', collection_class=list)
     )

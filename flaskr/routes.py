@@ -10,7 +10,8 @@ by the URL.
 from flask import render_template, flash, redirect, url_for
 from markupsafe import escape
 from flaskr import app
-
+from flaskr import geoform
+from flaskr import db
 
 @app.route('/')
 @app.route('/intro')
@@ -23,8 +24,33 @@ def analytics(name=None):
     #Analytics Page
     return render_template('analytics.html',name=name)
 
-@app.route('/report')
+@app.route('/report', methods=['GET','POST'])
 def form(name=None):
+    form = MainForm()
+    template_form = GeoForm(prefix='Locations')
+    if form.validate_on_submit():
+        # Create race
+        new_location = locations()
+
+        db.session.add(new_location)
+
+        for location in form.locations.data:
+            new_location = Locations(**location)
+
+            # Add to race
+            new_location.laps.append(new_location)
+
+        db.session.commit()
+
+
+    locations = Race.query
+
+    return render_template(
+        'report.html',
+        form=form,
+        locations=locations,
+        _template=template_form
+    )
     #This is where the user supplies info for the JSON
     return render_template('report.html')
 
