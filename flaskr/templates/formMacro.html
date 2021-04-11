@@ -1,0 +1,29 @@
+{# Render lap form.
+
+    This macro is intended to render both regular lap subforms (received from the
+    server) and the template form used to dynamically add more forms.
+    
+    Arguments:
+        - subform: Form object to render
+        - index: Index of the form. For proper subforms rendered in the form loop,
+                 this should match `loop.index0`, and for the template it should be
+                 '_'
+    #}
+{%- macro render_location_form(subform, index) %}
+<div id="Location-{{ index }}-form" class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}">
+    <div>
+        {{ subform.longitude.label }}
+        {{ subform.longitude}}
+    </div>
+    <div>
+        {{ subform.latitude.label }}
+        {{ subform.latitude }}
+    </div>
+    <div>
+        {{ subform.time.label }}
+        {{ subform.time }}
+    </div>
+    <a class="remove" href="">Remove</a>
+    <hr/>
+</div>
+{%- endmacro %}
