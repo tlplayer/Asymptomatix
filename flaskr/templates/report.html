@@ -1,21 +1,26 @@
 {% extends 'base.html' %}
 
-{% block reportTitle%}
-  <h1>Analytics</h1>
-{% endblock %}
 
 {% block content%}
-  <form method="post">
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-    <label for="latitutde">Latitude</label>
-    <input name="latitude" id="latitude" required>
-    <label for="longitude">longitude</label>
-    <input type="longitude" name="longitude" id="longitude" required>
-    <input type="submit" value="Register">
-    <fieldset id="buildyourform">
-        <legend>Build your own form!</legend>
-    </fieldset>
-    <input type="button" value="Preview form" class="add" id="preview" />
-    <input type="button" value="Add a field" class="add" id="add" />
-  </form>
+
+{%- macro location_form(subform, index) %}
+    <script src="https://www.google.com/recaptcha/api.js"></script> 
+    <div id="lap-{{ index }}-form" class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}">
+        <div>
+            {{ subform.latitude.label }}
+            {{ subform.latitude }}
+        </div>
+        <div>
+            {{ subform.longitude.label }}
+            {{ subform.longitude}}
+        </div>
+        <div>
+            {{ subform.time.label }}
+            {{ subform.time }}
+        </div>
+        <a class="remove" href="">Remove</a>
+        <hr/>
+    </div>
+{%- endmacro %}
+
 {% endblock %}
