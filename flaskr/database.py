@@ -8,26 +8,26 @@ identify someone we are not a dev team.
 '''
 from flaskr import db
 
-class Locations(db.Model):
-    """Stores locations."""
-    __tablename__ = 'Locations'
+class Person(db.Model):
+    """Stores locations of this person."""
+    __tablename__ = 'People'
     id = db.Column(db.Integer, primary_key=True)
 
 
 class Location(db.Model):
     """Stores the location & time"""
-    __tablename__ = 'Location'
+    __tablename__ = 'Locations'
 
     id = db.Column(db.Integer, primary_key=True)
-    locations_id = db.Column(db.Integer, db.ForeignKey('Locations.id'))
+    person_id = db.Column(db.Integer, db.ForeignKey('People.id'))
 
     #This stores the long, lat and time.
     longitude = db.Column(db.Float)
     latitude = db.Column(db.Float)
     time = db.Column(db.String(10))
 
-    # Relationship
-    locations = db.relationship(
-        'Locations',
+    # Relationship store the person's locations as a list in the person's table in the people table.
+    person = db.relationship(
+        'Person',
         backref=db.backref('Locations', lazy='dynamic', collection_class=list)
     )
