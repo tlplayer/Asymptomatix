@@ -10,3 +10,4 @@ class Config(object):
     # being made to the database.
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+

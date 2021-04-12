@@ -13,7 +13,11 @@ from flaskr import app
 from flaskr import geoform
 from flaskr import db
 from flaskr import database
-from flask_googlemaps import Map, GoogleMaps
+from flask_googlemaps import Map
+from flaskr import GoogleMaps
+from flaskr import key
+
+GoogleMaps(app, key=key)
 
 @app.route('/')
 @app.route('/intro')
@@ -27,6 +31,34 @@ def map(x,y):
     x = float(x)
     y = float(y)
     
+
+    # creating a map in the view
+    mymap = Map(
+        identifier="view-side",
+        lat=37.4419,
+        lng=-122.1419,
+        markers=[(37.4419, -122.1419)]
+    )
+    sndmap = Map(
+        identifier="sndmap",
+        lat=37.4419,
+        lng=-122.1419,
+        markers=[
+          {
+             'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+             'lat': 37.4419,
+             'lng': -122.1419,
+             'infobox': "<b>Hello World</b>"
+          },
+          {
+             'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+             'lat': 37.4300,
+             'lng': -122.1400,
+             'infobox': "<b>Hello World from other place</b>"
+          }
+        ]
+    )
+    '''
     mymap = Map(
     identifier="view-side",
     lat=x,
@@ -52,7 +84,7 @@ def map(x,y):
         }
         ]
     )
-
+    '''
     #Return a new rendered template
     return render_template('mapview.html', mymap=mymap, sndmap=sndmap)
     
