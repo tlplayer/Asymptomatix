@@ -24,8 +24,9 @@ def intro(name=None):
 def analytics(name=None):
     #Analytics Page
     """Show the details of a race."""
-    patient0 = database.Person.query.filter_by(id=0).first()
-    print(patient0)
+    patient0 = database.Person.query.first()
+    #This is how you access location data
+    print(patient0.Locations[0].latitude)
     return render_template(
         'analytics.html',
         Person=patient0
