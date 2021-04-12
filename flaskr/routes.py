@@ -13,25 +13,78 @@ from flaskr import app
 from flaskr import geoform
 from flaskr import db
 from flaskr import database
+from flask_googlemaps import Map, GoogleMaps
 
 @app.route('/')
 @app.route('/intro')
 def intro(name=None):
     #Home page
     return render_template('intro.html', name=name)
+ 
+@app.route('/mapview/<x>/<y>', methods=['GET', 'POST'])
+def map(x,y):
+    #This takes the data for google maps. You have to parse URL arguments.
+    x = float(x)
+    y = float(y)
+    
+    mymap = Map(
+    identifier="view-side",
+    lat=x,
+    lng=y,
+    markers=[(x,y)]
+    )
+    sndmap = Map(
+    identifier="sndmap",
+    lat=x,
+    lng=y,
+    markers=[
+      {
+         'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+         'lat': x-0.0001,
+         'lng': y-0.0001,
+         'infobox': "<b>High Risk</b>"
+        },
+        {
+         'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+         'lat': x+0.0001,
+         'lng': y+0.0001,
+         'infobox': "<b>Low Risk</b>"
+        }
+        ]
+    )
 
-@app.route('/analytics')
+    #Return a new rendered template
+    return render_template('mapview.html', mymap=mymap, sndmap=sndmap)
+    
+@app.route('/analytics', methods=['GET', 'POST'])
 def analytics(name=None):
     #Analytics Page
-    """Show the details of a race."""
-    patient0 = database.Person.query.first()
+    form = geoform.MainForm()
+    template_form = geoform.GeoForm(prefix='Locations-_-')
+
     #This is how you access location data
-    print(patient0.Locations[0].latitude)
+    #print(patient0.Locations[0].latitude)
+    
+    #When the user hits search the can see all the at risk places nearby where they were.
+    if form.validate_on_submit():
+        person = database.Person()
+
+        for location in form.locations.data:
+            location = database.Location(**location)
+            print(location)
+            # Add to locations
+            person.Locations.append(location)
+            # creating a map in the view
+        print(person.Locations[0])
+        return redirect(url_for('map',x=person.Locations[0].latitude,y=person.Locations[0].longitude))
+
+    
     return render_template(
         'analytics.html',
-        form = geoform.GeoForm(prefix='Locations-_-'),
-        Person=patient0
-    )
+        form=form, #This is the main form
+        _template=template_form, #Location Form
+        ) 
+   
 
 @app.route('/report', methods=['GET', 'POST'])
 def form(name=None):
