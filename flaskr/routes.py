@@ -29,9 +29,9 @@ def analytics(name=None):
     print(patient0.Locations[0].latitude)
     return render_template(
         'analytics.html',
+        form = geoform.GeoForm(prefix='Locations-_-'),
         Person=patient0
     )
-    return render_template('analytics.html',name=name)
 
 @app.route('/report', methods=['GET', 'POST'])
 def form(name=None):

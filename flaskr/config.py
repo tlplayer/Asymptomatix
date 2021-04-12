@@ -9,3 +9,5 @@ class Config(object):
     # This just tells SQlALCHEMY the app doesn't need to know when a change is
     # being made to the database.
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    app.config['GOOGLEMAPS_KEY'] = "8JZ7i18MjFuM35dJHq70n3Hx4"
+    

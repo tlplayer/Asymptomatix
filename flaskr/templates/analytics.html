@@ -1,6 +1,31 @@
+
 {% extends 'base.html' %}
+{% import "formMacro.html" as macros %}
 
-{%block content%}
-<img src="/static/analytics_example.png" atl="knoxville" class="center">
+{% block content%}
+<style>
 
-{%endblock%}
+</style>
+<body>
+    <hr/>
+
+    {# Show all subforms #}
+    <form id="location-form" action="" method="POST" role="form">
+        {{ form.hidden_tag() }}
+        <div id="subforms-container">
+            {{ macros.render_location_form(subform, loop.index0) }}
+        </div>
+
+        <button type="submit">Search</button>
+    </form>
+
+    {% if form.errors %}
+    {{ form.errors }}
+    {% endif %}
+
+    {# Form template #}
+    {{ macros.render_location_form(_template, '_') }}
+
+</body>
+
+{% endblock %}
