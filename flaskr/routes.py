@@ -23,6 +23,13 @@ def intro(name=None):
 @app.route('/analytics')
 def analytics(name=None):
     #Analytics Page
+    """Show the details of a race."""
+    patient0 = database.Person.query.filter_by(id=0).first()
+    print(patient0)
+    return render_template(
+        'analytics.html',
+        Person=patient0
+    )
     return render_template('analytics.html',name=name)
 
 @app.route('/report', methods=['GET', 'POST'])
@@ -38,9 +45,10 @@ def form(name=None):
 
         for location in form.locations.data:
             new_location = database.Location(**location)
-
+            print(location)
             # Add to locations
             new_person.Locations.append(new_location)
+
 
         db.session.commit()
 

@@ -31,3 +31,7 @@ class Location(db.Model):
         'Person',
         backref=db.backref('Locations', lazy='dynamic', collection_class=list)
     )
+
+
+
+db.create_all()

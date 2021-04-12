@@ -9,9 +9,8 @@ app = Flask(__name__)
 app.config.from_object(config.Config)
 db = SQLAlchemy(app)
 db.init_app(app)
-# Create all database tables
-db.create_all(app=app)
 
+# Create all database tables
 engine = create_engine('sqlite:///cases.db', echo = True)
 
 from flaskr import routes
