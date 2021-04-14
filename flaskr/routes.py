@@ -15,23 +15,27 @@ from flaskr import db
 from flaskr import database
 from flask_googlemaps import Map
 from flaskr import GoogleMaps
-from flaskr import key
+from flaskr.test_data import x_y_tuples
 
-GoogleMaps(app, key=key)
+GoogleMaps(app)
 
 @app.route('/')
 @app.route('/intro')
 def intro(name=None):
     #Home page
     return render_template('intro.html', name=name)
- 
+
 @app.route('/mapview/<x>/<y>', methods=['GET', 'POST'])
 def map(x,y):
+    #Return a new rendered template
+    #return render_template('mapview.html', mymap=mymap, sndmap=sndmap)
     #This takes the data for google maps. You have to parse URL arguments.
     x = float(x)
     y = float(y)
-    
 
+    return render_template('mapview.html', center_x=x, center_y=y, api_key=app.config['GOOGLEMAPS_KEY'])
+
+"""
     # creating a map in the view
     mymap = Map(
         identifier="view-side",
@@ -58,7 +62,8 @@ def map(x,y):
           }
         ]
     )
-    '''
+"""
+'''
     mymap = Map(
     identifier="view-side",
     lat=x,
@@ -84,10 +89,8 @@ def map(x,y):
         }
         ]
     )
-    '''
-    #Return a new rendered template
-    return render_template('mapview.html', mymap=mymap, sndmap=sndmap)
-    
+'''
+
 @app.route('/analytics', methods=['GET', 'POST'])
 def analytics(name=None):
     #Analytics Page
