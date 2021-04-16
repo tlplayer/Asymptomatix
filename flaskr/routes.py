@@ -32,64 +32,9 @@ def map(x,y):
     #This takes the data for google maps. You have to parse URL arguments.
     x = float(x)
     y = float(y)
-
-    return render_template('mapview.html', center_x=x, center_y=y, api_key=app.config['GOOGLEMAPS_KEY'])
-
-"""
-    # creating a map in the view
-    mymap = Map(
-        identifier="view-side",
-        lat=37.4419,
-        lng=-122.1419,
-        markers=[(37.4419, -122.1419)]
-    )
-    sndmap = Map(
-        identifier="sndmap",
-        lat=37.4419,
-        lng=-122.1419,
-        markers=[
-          {
-             'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-             'lat': 37.4419,
-             'lng': -122.1419,
-             'infobox': "<b>Hello World</b>"
-          },
-          {
-             'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-             'lat': 37.4300,
-             'lng': -122.1400,
-             'infobox': "<b>Hello World from other place</b>"
-          }
-        ]
-    )
-"""
-'''
-    mymap = Map(
-    identifier="view-side",
-    lat=x,
-    lng=y,
-    markers=[(x,y)]
-    )
-    sndmap = Map(
-    identifier="sndmap",
-    lat=x,
-    lng=y,
-    markers=[
-      {
-         'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-         'lat': x-0.0001,
-         'lng': y-0.0001,
-         'infobox': "<b>High Risk</b>"
-        },
-        {
-         'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-         'lat': x+0.0001,
-         'lng': y+0.0001,
-         'infobox': "<b>Low Risk</b>"
-        }
-        ]
-    )
-'''
+    coords = [[x[0],x[1]] for x in x_y_tuples]
+    return render_template('mapview.html',
+            coords=coords, center_x=x, center_y=y, api_key=app.config['GOOGLEMAPS_KEY'])
 
 @app.route('/analytics', methods=['GET', 'POST'])
 def analytics(name=None):
