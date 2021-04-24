@@ -34,6 +34,7 @@ ADD . /app
 
 ENV FLASK_APP flaskr
 ENV FLASK_ENV development
+ENV DOCKERENV True
 ENV FLASK_RUN_PORT 8008
 
 

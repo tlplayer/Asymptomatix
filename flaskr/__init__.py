@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from flask_googlemaps import GoogleMaps
+from os import environ
 
 # make key.py with API_KEY='your_api_string'
 from flaskr import config, key
@@ -15,7 +16,13 @@ alembic_cfg = Config()
 app = Flask(__name__)
 app.config.from_object(config.Config)
 app.config["GOOGLEMAPS_KEY"] = key.API_KEY
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:webapp@host.docker.internal:5432/asymptomatix"
+
+if "DOCKERENV" in environ:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:webapp@host.docker.internal:5432/asymptomatix"
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///cases.db"
+
+
 
 db = SQLAlchemy(app)
 db.init_app(app)
