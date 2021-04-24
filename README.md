@@ -10,7 +10,7 @@ Asymptomatix is a crowd source covid-19 contact tracing website. In brief, it en
 ```sh
 python3 -m venv env
 source env/bin/activate
-pip install -r requirments.txt
+pip install -r requirements.txt
 ```
 
 Point the FLASK_APP variable at the directory/file that holds the app
@@ -23,4 +23,21 @@ export FLASK_RUN_PORT=8008
 Run the flask app
 ```sh
 flask run
+```
+
+
+## Running Docker
+
+Build and run the flask app in Docker
+
+```bash
+make app
+```
+
+If you run into security errors due to computer vpn, add cert to docker by
+uncommenting lines 2&3 in Dockerfile and replacing ZscalerRootCA.crt with your crt name
+
+```sh
+#COPY vpn_cert/ZscalerRootCA.crt /etc/pki/ca-trust/source/anchors/
+#RUN update-ca-trust
 ```

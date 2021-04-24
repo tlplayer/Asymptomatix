@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+
+  db:
+    restart: always
+    image: postgres:11.10
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: webapp
+    volumes:
+      - ./db/01-initdb.sql:/docker-entrypoint-initdb.d/01-initdb.sql:ro
+
+
+  web:
+    restart: always
+    build: .
+    ports:
+      - "8008:8008"
+    depends_on:
+      - db
+
