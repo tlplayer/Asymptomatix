@@ -1,0 +1,7 @@
+flask==1.1.2
+flask-sqlalchemy==2.5.1
+Flask-WTF==0.14.3
+flask-googlemaps==0.4.1
+gunicorn==20.1.0
+Flask-Migrate==2.5.2
+psycopg2-binary==2.8.6

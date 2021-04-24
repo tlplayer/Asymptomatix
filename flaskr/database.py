@@ -33,5 +33,5 @@ class Location(db.Model):
     )
 
 
-
-db.create_all()
+if __name__ == "main":
+    db.create_all()

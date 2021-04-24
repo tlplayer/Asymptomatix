@@ -1,5 +1,0 @@
-flask
-flask-sqlalchemy
-Flask-WTF
-tensorflow
-flask-googlemaps
