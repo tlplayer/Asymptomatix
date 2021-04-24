@@ -36,13 +36,8 @@ ENV FLASK_APP flaskr
 ENV FLASK_ENV development
 ENV DOCKERENV True
 ENV FLASK_RUN_PORT 8008
-
-
 EXPOSE 8008
 
-
-#RUN 	pip3 install flask-migrate --upgrade && \
-#        flask db upgrade
 
 
 ENTRYPOINT ["gunicorn"]
