@@ -3,10 +3,11 @@ from alembic.config import Config
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
+from flask_googlemaps import GoogleMaps
 
 # make key.py with API_KEY='your_api_string'
 from flaskr import config, key
-from sqlalchemy import create_engine
 
 alembic_cfg = Config()
 
