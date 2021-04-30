@@ -15,11 +15,13 @@ from flaskr import db
 from flaskr import database
 from flask_googlemaps import Map
 from flaskr import GoogleMaps
-from flaskr.test_data import x_y_tuples
+#from flaskr.test_data import x_y_tuples
 from flask import json as flask_json
 import json
 from numpy import sqrt
 from os import path
+from datetime import datetime
+import time
 
 
 GoogleMaps(app)
@@ -30,22 +32,22 @@ def intro(name=None):
     #Home page
     return render_template('intro.html', name=name)
 
-@app.route('/mapview/<x>/<y>', methods=['GET', 'POST'])
-def map(x,y):
+@app.route('/mapview/<x>/<y>/<t>', methods=['GET', 'POST'])
+def map(x,y,t):
     #Return a new rendered template
     #return render_template('mapview.html', mymap=mymap, sndmap=sndmap)
     #This takes the data for google maps. You have to parse URL arguments.
     x = float(x)
     y = float(y)
-    coords = [[x[0],x[1]] for x in x_y_tuples]
-    return render_template('mapview.html',
-            coords=coords, center_x=x, center_y=y, api_key=app.config['GOOGLEMAPS_KEY'])
+    t = t
+    return render_template('mapview.html',time = t, center_x=x, center_y=y, api_key=app.config['GOOGLEMAPS_KEY'])
 
 @app.route('/analytics', methods=['GET', 'POST'])
 def analytics(name=None):
     #Analytics Page
     form = geoform.MainForm()
     template_form = geoform.GeoForm(prefix='Locations-_-')
+    
 
     #This is how you access location data
     #print(patient0.Locations[0].latitude)
@@ -56,12 +58,16 @@ def analytics(name=None):
 
         for location in form.locations.data:
             location = database.Location(**location)
-            print(location)
             # Add to locations
             person.Locations.append(location)
             # creating a map in the view
-        print(person.Locations[0])
-        return redirect(url_for('map',x=person.Locations[0].latitude,y=person.Locations[0].longitude))
+        # Render time as day
+        t = person.Locations[0].time
+        pattern = "%m/%d/%Y"
+        t = int(int(time.mktime(time.strptime(t,pattern)))/int(86400))
+        print(t)
+        return redirect(url_for('map',x=person.Locations[0].latitude,y=person.Locations[0].longitude,
+                                t=t))
 
     
     return render_template(
@@ -99,7 +105,7 @@ def form(name=None):
 
 @app.route('/generatemap/<filename>',methods=['GET','POST'])
 def generate_hotspots(filename="./data/exampledata.json"):
-    filename = path.join(app.root_path+'/data/day0/'+filename)
+    filename = path.join(app.root_path+'/data/day'+filename+'/t480.json')
     hotspots = {}
     hs_num = 0
                             # 0.0001 for 36 foot radius and 0.0002 for
