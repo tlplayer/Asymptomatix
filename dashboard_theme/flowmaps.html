@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Asymptomatix</title>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://unicons.iconscout.com/release/v3.0.6/css/line.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+<!-- partial:index.partial.html -->
+<aside class="sidebar position-fixed top-0 left-0 overflow-auto h-100 float-left" id="show-side-navigation1">
+  <i class="uil-bars close-aside d-md-none d-lg-none" data-close="show-side-navigation1"></i>
+  <div class="sidebar-header d-flex justify-content-center align-items-center px-3 py-4">
+    <img
+         class="rounded-pill img-fluid"
+         width="300"
+         src="./logo.png"
+         alt="">
+
+  </div>
+
+  <div class="search position-relative text-center px-4 py-3 mt-2">
+    <input type="text" class="form-control w-100 border-0 bg-transparent" placeholder="Search here">
+    <i class="fa fa-search position-absolute d-block fs-6"></i>
+  </div>
+
+  <ul class="categories list-unstyled">
+    <li class="">
+      <i class="uil-estate fa-fw"></i><a href="index.html"> Dashboard</a>
+    </li>
+    <li class="">
+      <i class="uil-folder"></i><a href="reporting.html">Reporting</a>
+    </li>
+
+
+    <li class="">
+      <i class="uil-analytics"></i><a href="analytics.html">Analytics</a>
+    </li>
+
+    <li class="has-dropdown">
+      <i class="uil-calendar-alt"></i><a href="#"> Calender</a>
+      <ul class="sidebar-dropdown list-unstyled">
+        <li><a href="#">Appointments</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Staff Schedule</a></li>
+        <li><a href="#">Community Events</a></li>
+        <li><a href="#">Holiday Schedule</a></li>
+      </ul>
+    </li>
+    <li class="">
+      <i class="uil-envelope-download fa-fw"></i><a href="#"> Mailbox</a>
+    </li>
+    <li class="">
+      <i class="uil-bag"></i><a href="#"> Projects</a>
+    </li>
+    <li class="">
+      <i class="uil-setting"></i><a href="#"> Settings</a>
+      <ul class="sidebar-dropdown list-unstyled">
+        <li><a href="#">Lorem ipsum</a></li>
+        <li><a href="#">ipsum dolor</a></li>
+        <li><a href="#">dolor ipsum</a></li>
+        <li><a href="#">amet consectetur</a></li>
+        <li><a href="#">ipsum dolor sit</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <i class="uil-panel-add"></i><a href="#"> Charts</a>
+      <ul class="sidebar-dropdown list-unstyled">
+        <li><a href="flowmaps.html">Flow Map</a></li>
+        <li><a href="knn.html">KNN</a></li>
+        <li><a href="community_spread.html">Community Spread</a></li>
+      </ul>
+    </li>
+    <li class="">
+      <i class="uil-map-marker"></i><a href="http://127.0.0.1:8008/mapview/37.775/-122.434"> Maps</a>
+    </li>
+  </ul>
+</aside>
+
+<section id="wrapper">
+  <nav class="navbar navbar-expand-md">
+    <div class="container-fluid mx-2">
+      <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle-navbar" aria-controls="toggle-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="uil-bars text-white"></i>
+        </button>
+        <a class="navbar-brand" href="#">admin<span class="main-color">kit</span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="toggle-navbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Settings
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="#">My account</a>
+              </li>
+              <li><a class="dropdown-item" href="#">My inbox</a>
+              </li>
+              <li><a class="dropdown-item" href="#">Help</a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Log out</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="uil-comments-alt"></i><span>23</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="uil-bell"></i><span>98</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i data-show="show-side-navigation1" class="uil-bars show-side-btn"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="p-4">
+    <div class="welcome">
+      <div class="content rounded-3 p-3">
+        <h1 class="fs-3"> Dashboard</h1>
+        <p class="mb-0"> Welcome to Asymptomatix!
+          This is a website that attempts to help users clearly visualize where others in their community have been in the past week or so to enable clear visualization of Covid-19 positive individuals.
+          This is an honor system Where individuals names/identification is not recorded. </p>
+      </div>
+    </div>
+
+  <section class="statis mt-4 text-center">
+      <div class="row">
+        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <div class="box bg-primary p-3">
+            <i class="uil-eye"></i>
+            <h3>5,154</h3>
+            <p class="lead">Page views</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <div class="box bg-danger p-3">
+            <i class="uil-user"></i>
+
+
+            <h3>245</h3>
+            <p class="lead">Positive Tests</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+          <div class="box bg-info p-3">
+            <i class="uil-flask"></i>
+            <h3>12,202</h3>
+            <p class="lead">Tests Administered</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="box bg-success p-3">
+            <i class="uil-feedback"></i>
+            <h3>5,154</h3>
+            <p class="lead">Vaccinations</p>
+          </div>
+        </div>
+      <br>
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+  <div class="p-4">
+    <div class="welcome">
+      <div class="content rounded-3 p-3">
+        <h1 class="fs-3"> Flow Visualization Dashboard</h1>
+        <p class="mb-0">
+ Geographic flow maps representing data published ingested
+
+Visualize numbers of movements between locations
+
+Explore the data interactively. </p>
+      </div>
+    </div>
+
+<section class="charts mt-4">
+      <div class="chart-container p-3">
+        <h3 class="fs-6 mb-3">Flow Visualization Chart</h3>
+        <div style="height: 600px"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+          <iframe width="100%" height="100%" src="https://flowmap.blue/1VCVady2OANtFDNg9gtPXn1G7XM1LZbdNIgZUT6lEE5c/embed?v=35.952417,-83.933059,14.68,0,0&amp;a=1&amp;as=1&amp;b=1&amp;bo=75&amp;c=1&amp;ca=1&amp;d=1&amp;fe=1&amp;lt=1&amp;lfm=ALL&amp;col=Reds&amp;f=50" frameborder="0" allowfullscreen=""></iframe>
+
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'></script>
+<script  src="./script.js"></script>
+
+</body>
+</html>
