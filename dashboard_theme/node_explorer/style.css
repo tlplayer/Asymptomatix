@@ -1,0 +1,55 @@
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: #1f1f1f;
+}
+
+svg {
+  display: block;
+}
+
+/***** HOVER *****/
+.name {
+  display: none;
+}
+
+.circle:hover, .circle:active {
+  fill: #122f3f;
+  cursor: pointer;
+}
+
+.group-node:hover .name {
+  display: block;
+}
+
+.options {
+  position: absolute;
+  top: 0;
+  left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0.5em;
+  color: white;
+}
+.options li.current {
+  color: #A3A79F;
+}
+.options li.current::before {
+  content: "x";
+  color: yellow;
+  font-size: 0.6em;
+  padding-right: 0.5em;
+}
+.options li:hover {
+  cursor: pointer;
+  color: yellow;
+}
+.options li.randomizer {
+  background-color: yellow;
+  color: black;
+  margin-top: 0.5em;
+}
+.options li.randomizer:hover {
+  background-color: #FFD412;
+}
