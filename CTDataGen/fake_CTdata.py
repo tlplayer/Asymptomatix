@@ -6,6 +6,7 @@ import numpy as np
 import sys
 from enum import Enum
 import csv
+import os
 
 # The format of the data generated is as follows
 # 'id'      - An integer number representing an anonymous patient
@@ -50,7 +51,8 @@ print("\tEvery {}nth person is positive at {} saturation".format(EVERY_POSITIVE,
 VAX_EFFICACY        = 0.9
 VAX_RAND_OFFSET     = rd.randint(0,NUM_PATIENTS)
 
-fakeCTfile = "data/fake_CT"+str(NUM_PATIENTS)+"_wvax.json"
+fakeCTfile = "fake_CT"+str(NUM_PATIENTS)+"_wvax.json"
+print(os.getcwd())
 
 jsondata = [{}] * NUM_PATIENTS
 
@@ -106,7 +108,8 @@ for i in range(NUM_PATIENTS):
     locations = generate_locations(k)
     vax = bool(rd.random() < VAX_SAT)
     eff = bool(vax and rd.random() < VAX_EFFICACY)
-      
+    latlst = [x / 10000 for x in list(locations[:,0])]
+    lonlst = [x / 10000 for x in list(locations[:,1])]
     patient = {
         'id' : i,
         'positive' : bool(not(i % EVERY_POSITIVE)),
@@ -114,8 +117,8 @@ for i in range(NUM_PATIENTS):
         'eff_dose' : eff,
         'mobility' : Mobility(mobility).name,
         't' : list(locations[:,2]),
-        'lat' : list(locations[:,0]),
-        'lon' : list(locations[:,1])
+        'lat' : latlst,
+        'lon' : lonlst
     }
 
     jsondata[i] = patient
