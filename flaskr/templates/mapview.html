@@ -112,12 +112,13 @@
       var pts = [];
       //Result of heatmap.generate_hotspots(filename)
       filename = {{time}};
+      dirname = {{date}};
       // Had to be done
       $.ajaxSetup({async:false});
       function callServer(){
         return $.ajax({
         type: "POST",
-        url: "/generatemap/" + filename,
+        url: "/generatemap/" + dirname + "/" + filename,
         dataType: "JSON",
         // Puts return value into
         success: function(data){ 

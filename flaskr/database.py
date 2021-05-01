@@ -24,7 +24,7 @@ class Location(db.Model):
     #This stores the long, lat and time.
     longitude = db.Column(db.Float)
     latitude = db.Column(db.Float)
-    time = db.Column(db.String(10))
+    time = db.Column(db.String(16))
 
     # Relationship store the person's locations as a list in the person's table in the people table.
     person = db.relationship(

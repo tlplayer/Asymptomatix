@@ -18,8 +18,8 @@ class GeoForm(Form):
     )
     #Year month day format
     time = StringField(
-        'Date',
-        validators=[validators.InputRequired(), validators.Length(min=10,max=10)]
+        'Date (MM/DD/YYYY HH:MM)',
+        validators=[validators.InputRequired(), validators.Length(min=16,max=16)]
     ) 
 
 
