@@ -5,4 +5,4 @@ flask-googlemaps==0.4.1
 gunicorn==20.1.0
 Flask-Migrate==2.5.2
 psycopg2-binary==2.8.6
-numpy==1.20.2
+numpy==1.22.0
